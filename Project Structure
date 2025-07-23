@@ -1,0 +1,9 @@
+# Create main project directory
+mkdir -p ~/nodejs-react-app
+cd ~/nodejs-react-app
+
+# Create directory structure
+mkdir -p frontend backend nginx/conf.d ssl logs/nginx docker/php db/init redis
+
+# Create environment file
+touch .env
