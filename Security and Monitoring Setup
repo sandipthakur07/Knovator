@@ -1,0 +1,24 @@
+# Create monitoring script
+nano monitor-laravel.sh
+#!/bin/bash
+# Laravel monitoring script
+
+# Check container health
+echo "=== Container Status ==="
+docker-compose -f docker-compose.laravel.yml ps
+
+# Check database connection
+echo "=== Database Status ==="
+docker-compose -f docker-compose.laravel.yml exec mysql-master mysqladmin ping -h localhost
+
+# Check Redis connection
+echo "=== Redis Status ==="
+docker-compose -f docker-compose.laravel.yml exec redis-master redis-cli ping
+
+# Check Elasticsearch
+echo "=== Elasticsearch Status ==="
+curl -s http://localhost:9200/_cluster/health | jq '.'
+
+# Check application response
+echo "=== Application Status ==="
+curl -s -o /dev/null -w "%{http_code}" http://localhost
