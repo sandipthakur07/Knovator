@@ -1,0 +1,11 @@
+# Download GitLab Runner installation script
+curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
+
+# Install GitLab Runner
+sudo apt install gitlab-runner
+
+# Add gitlab-runner user to docker group
+sudo usermod -aG docker gitlab-runner
+
+# Verify installation
+gitlab-runner --version
