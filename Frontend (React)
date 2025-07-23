@@ -1,0 +1,15 @@
+cd ../frontend
+npx create-react-app . --template typescript
+# Build and start the application
+cd ~/nodejs-react-app
+docker-compose up -d --build
+
+# Check if containers are running
+docker-compose ps
+
+# View logs
+docker-compose logs -f
+
+# Test the application
+curl http://localhost/health
+curl http://localhost/api/health
