@@ -1,0 +1,13 @@
+# Create backup script
+nano backup-laravel.sh
+#!/bin/bash
+BACKUP_DIR="/opt/backups/$(date +%Y%m%d_%H%M%S)"
+mkdir -p $BACKUP_DIR
+
+# Database backup
+docker-compose -f docker-compose.laravel.yml exec mysql-master mysqldump -u root -p${MYSQL_ROOT_PASSWORD} ${DB_DATABASE} > $BACKUP_DIR/database.sql
+
+# Redis backup
+docker-compose -f docker-compose.laravel.yml exec redis-master redis-cli --rdb $BACKUP_DIR/dump.rdb
+
+echo "Backup completed: $BACKUP_DIR"
