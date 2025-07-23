@@ -1,0 +1,16 @@
+# Build and start all services
+docker-compose -f docker-compose.laravel.yml up -d --build
+
+# Check if all containers are running
+docker-compose -f docker-compose.laravel.yml ps
+
+# Run Laravel migrations
+docker-compose -f docker-compose.laravel.yml exec php-fpm php artisan migrate
+
+# Clear and cache configurations
+docker-compose -f docker-compose.laravel.yml exec php-fpm php artisan config:cache
+docker-compose -f docker-compose.laravel.yml exec php-fpm php artisan route:cache
+docker-compose -f docker-compose.laravel.yml exec php-fpm php artisan view:cache
+
+# Test the application
+curl http://localhost
