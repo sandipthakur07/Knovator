@@ -1,0 +1,7 @@
+# Create Laravel project
+composer create-project laravel/laravel laravel
+
+# Install additional packages
+cd laravel
+composer require predis/predis
+composer require elasticsearch/elasticsearch
