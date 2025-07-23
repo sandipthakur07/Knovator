@@ -9,3 +9,4 @@ sudo usermod -aG docker gitlab-runner
 
 # Verify installation
 gitlab-runner --version
+sudo gitlab-runner register
